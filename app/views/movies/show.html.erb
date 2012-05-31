@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @movie.name %>
+</p>
+
+<p>
+  <b>Length:</b>
+  <%= @movie.length %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @movie.url %>
+</p>
+
+<p>
+  <b>Clips:</b>
+  <% @clips.each do |c| %>
+    <br /><%= link_to c.id, c %>
+  <% end %>
+</p>
+
+
+
+
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>

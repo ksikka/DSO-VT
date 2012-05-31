@@ -1,0 +1,19 @@
+<style>
+<% containerWidth = 750
+   boxSide = containerWidth/2 - 10 %>
+#container {
+margin-left: auto; margin-right: auto;
+width:<%= "#{containerWidth}px"  %>;
+}
+.bigfont { font-size:24pt; }
+.left { float:left; }
+.right {float:right; }
+.box { width:<%= "#{boxSide}px" %>; height:<%= "#{boxSide}px" %>   }
+</style>
+<div id="container">
+<% unless flash[:notice].nil? %>
+  <div class="alert-message success"><%= flash[:notice] %></div>
+<%end%>
+<div class="bigfont left box"><%= link_to "Admin", clips_path %></div>
+<div class="bigfont right box"><%= link_to "Transcriber", :controller => "clips", :action => "show" %></div>
+</div>

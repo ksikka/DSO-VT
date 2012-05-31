@@ -1,0 +1,28 @@
+<style>
+label { float:none }/** Overriding bootstrap to make it look normal */
+</style>
+
+
+<div class="span10">
+<h2>Choose a file to initialize</h2>
+<% if @urls.size == 0 %>
+  There are no new video files in the public/videos folder. Please add one and refresh.
+<% else %>
+<%= form_for @clip do |f| %>
+  <ul>
+    <% @urls.each do |filename| %>
+      <li>
+      <%= f.radio_button :url, filename %>
+      <%= f.label :url, filename %>
+      </li>
+    <% end %>
+  </ul>
+  <%= f.submit %>
+  <% end end %>
+<%= form_for @clip do |f| %>
+  Or, enter the URL to the media file:
+  <%= f.text_field :url %><br />
+  <%= f.submit %>
+<% end %>
+
+</div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DSO</title>
+  <!-- Main stylesheets and js -->
+  <%= javascript_include_tag :defaults %>
+  <!-- CSS -->
+  <%= stylesheet_link_tag "style" %>
+  <!-- JQuery -->
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" %>
+  <!-- FlowPlayer -->
+  <%= javascript_include_tag "flowplayer-3.2.6.min" %>
+  <%= javascript_include_tag "external.config" %>
+  <!-- Transcription.js -->
+  <%= javascript_include_tag "transcription" %>
+
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+
+</html>

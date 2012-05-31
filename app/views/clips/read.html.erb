@@ -1,0 +1,30 @@
+<div class="span 13">
+
+<% if @clip.status %>
+<% lastspeaker = "" %>
+  <h2> Transcript </h2>
+  <table>
+  <% @clip.segments.each do |seg| %>
+    <tr>
+      <td>
+        <%= seg.speaker if !seg.speaker.eql?(lastspeaker) %>
+      </td>
+      <td>
+        <%= "#{seg.timestart}s - #{seg.timeend}s" %>
+      </td>
+      <td>
+        <%= seg.text %>
+      </td>
+    </tr>
+  <%    lastspeaker = seg.speaker
+      end %>
+  </table>
+  <h2>Time taken to transcribe: </h2>
+  <p><%= "#{@clip.worker_time} seconds" %></p>
+  <p><%= link_to "Download the Transcript", :controller => "clips", :action => "transcript", :id => @clip.id %></p>
+<% else %> 
+
+<h2>Status: Pending</h2>
+
+<% end %>
+</div>

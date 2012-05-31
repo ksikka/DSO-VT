@@ -1,0 +1,136 @@
+/* Basic layout */
+
+#topContainer
+{
+	display:block; 
+	width:100%; 
+	height:5%; 
+	//border: 2px dashed;
+	background-color: rgba(0,0,0,0.7);
+	//color: yellow;
+	//text-transform: lowercase;
+	//font: helvetica;
+	//font-weight:  800;
+	//font-size: 36px;
+	padding-bottom: 3px;
+	//font-stretch:  extra-expanded wider;
+	background-image: url("images/samasource_logo_white.png");
+	background-repeat: no-repeat;
+}
+
+#mainContainer
+{
+	width:100%; 
+	height:100%; 
+	//width: 800px;
+	//height: 600px;
+	//border: 2px dashed;
+	background-color: gray;
+}
+
+#leftContentArea
+{
+	float: left; 
+	width:80%; 
+	height:100%; 
+	//border: 2px solid;	
+	background-color: gray;
+	//border-color: yellow;
+	
+}
+
+#rightContentArea
+{
+	float: right; 
+	width:20%; 
+	height:100%; 
+	//border: 2px dashed;
+	background-color: gray;
+}
+
+.wrapper{
+	overflow:  scroll;
+}
+
+.btnGroup{
+	 margin-left: 10px;
+	 margin-right: 10px;
+}
+
+.tooltip {
+	display:none;
+	//background:transparent url(/tools/img/tooltip/black_arrow.png);
+	background: rgba(0,0,0,0.8);
+	font-size:medium;
+	font: arial;
+	//height:70px;
+	//width:160px;
+	padding:15px;
+	color:#fff;	
+}
+
+#browserText{
+	font-style:  italic;
+	color: #fff;
+	background-color: rgba(0,0,0,0.7);
+	//font: Helvetica;
+	font-size:  small; 
+}
+
+.header{
+	font-style:  italic;
+	color: yellow;
+	background-color: rgba(0,0,0,0.7);
+	//font: Helvetica;
+	font-size:  large; 
+	text-align:  left;
+}
+
+/*#volumecontrol{
+	width: 2px;
+	height: 20px;
+	direction: ltr;
+}*/
+
+#cmdEditPanel{
+	position: absolute;
+	width: 150px;
+	height: 100px;
+	top: 300px;
+	left: 780px;
+	background: lightgray;
+	border: 2px;
+	display: block;
+	
+}
+
+#editPanel{
+	position: absolute;
+	width: 150px;
+	height: 100px;
+	top: 275px;
+	left: 750px;
+	background: lightgray;
+	border: 2px;
+	display: block;	
+}
+
+.selected td{
+	background-color: lightgray;
+}
+
+th
+{
+	text-align: left;
+}
+
+/*.stamp{
+	visibility: hidden;
+}*/
+
+
+#timer{
+	color: white;
+	padding-left: 2px;
+	padding-right: 20px;
+}

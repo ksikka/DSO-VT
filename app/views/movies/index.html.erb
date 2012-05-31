@@ -1,0 +1,13 @@
+<h1>Welcome to DSO's awesome video transcription module</h1>
+
+<h2>Select from the movies below</h2>
+
+<div>
+  <% @movies.each do |movie| %>
+    <p><%= link_to movie.name, movie, :id => movie.id %></p>
+  <% end %>
+</div>
+
+<br />
+
+<%= link_to 'New Movie', new_movie_path %>

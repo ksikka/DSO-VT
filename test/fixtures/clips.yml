@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  url: MyString
+  timestart: 1
+  length: 1
+  status: false
+
+two:
+  url: MyString
+  timestart: 1
+  length: 1
+  status: false

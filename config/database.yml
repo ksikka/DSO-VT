@@ -1,0 +1,22 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: rails_development
+  pool: 5
+  username: ksikka 
+
+test: &TEST
+  adapter: postgresql
+  encoding: utf8
+  database: project_test
+  pool: 5
+  username: 
+  password:
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: project_production
+  pool: 5
+  username: 
+  password:

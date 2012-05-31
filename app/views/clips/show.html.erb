@@ -1,0 +1,155 @@
+
+<div id='clipid' style="display:none"><%=  @clip.id %></div>
+		<!-- top container (logo, welcome) -->
+		<!--<div id="topContainer">
+			<div id="logoArea"></div>
+			<div id="welcomeMsg">hello, Adi!</div> 
+			<div id="logoutMsg"> Logout </div>
+		</div>-->
+		<!-- end top container -->
+		
+		<!-- main container -->
+		<div id="mainContainer">			
+			
+			<!-- left content area -->
+			<div id="leftContentArea">
+				<div id="videoPanel">
+					<a  
+            href="<%= if @clip.localFile 
+                        video_path(@clip.url)
+                       else @clip.url
+                       end%>"
+						 id="player"> 
+					</a>							
+				</div>				
+				<div id="transcriptionPanel">
+					<div class="wrapper">
+						<table cellspacing="0" cellpadding="0">
+							<tbody>
+							<tr class="segment active">
+								<td class="seg_left">
+									<!--<input class="timestamp active" type="text" value="00:00" disabled="" />-->
+									<div class="timestamp active">
+										<div class="start"></div>
+										<div class="separator"> - </div>
+										<div class="end"></div>	
+									</div>
+									<p class="speaker ui-corner-top ui-corner-bottom"> </p>
+								</td>
+								<td class="seg_right">
+									<textarea class="active txt">Start typing here ... </textarea>
+									<div class="reviewWrapper ui-corner-top ui-corner-bottom" style="float:right;display:none">
+										<button class="rEdit ui-icon ui-icon-pencil"> </button>
+										<button class="rSave ui-icon ui-icon-disk" style="display:none"> </button>
+										<button class="rDel ui-icon ui-icon-trash"> </button>
+									</div>
+								</td>
+							</tr>
+							</tbody>
+						</table>						
+					</div>
+					<div id="buttonArea">
+						<button id="review" class="quickAccess" accesskey="Ctrl+Alt+R"> </button>
+						<button id="done" class="quickAccess" style="display:none"> </button>
+						<button id="export" class="quickAccess" accesskey="Ctrl+Alt+E" > </button><!-- Want to make this a submit action which POSTs a JSON -->
+					</div>
+				</div>				
+			</div>
+			<!-- end left content area -->
+			
+			<!-- right content area -->
+
+			<div id="rightContentArea">
+			<div class="wrapper ui-accordion ui-widget ui-helper-reset">
+				<div class="title ui-accordion-header ui-helper-reset ui-state-active ui-corner-top">
+					<span> Keyboard Commands </span>
+					<span class="ui-icon ui-icon-triangle-1-s act"/>					
+					<!--<img src="images/down-arrow.png" class="act" />-->
+				</div>
+				<div class="content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+					<table id="keyboardShortcuts">
+						<thead>
+							<tr>
+								<th>Command</th>
+								<th>Shortcut</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><div>Play/Pause video</div></td>
+								<td><div>Ctrl+Space</div></td>
+							</tr>
+							<tr>
+								<td><div>Forward 10 sec</div></td>
+								<td><div>Ctrl+Alt+&rarr;</div></td>
+							</tr>
+							<tr>
+								<td><div>Backward 10 sec</div></td>
+								<td><div>Ctrl+Alt+&larr;</div></td>
+							</tr>
+							<tr>
+								<td><div>Move to previous segment</div></td>
+								<td><div>Ctrl+Alt+&uarr;</div></td>
+							</tr>
+							<tr>
+								<td><div>Move to next segment</div></td>
+								<td><div>Ctrl+Alt+&darr;</div></td>
+							</tr>
+							<tr>
+								<td><div>Toggle speaker</div></td>
+								<td><div>Alt+S</div></td>
+							</tr>
+							<tr>
+								<td><div>Add new speaker</div></td>
+								<td><div>Ctrl+Alt+S</div></td>
+							</tr>
+							<tr>
+								<td><div>OR Add new speaker (one higher than the current number)</div></td>
+								<td><div>@+S+spacebar</div></td>
+							</tr>
+							<tr>
+								<td><div>OR Add new speaker (with a specified number)</div></td>
+								<td><div>@+S+x, where x is an integer</div></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="title ui-accordion-header ui-helper-reset ui-state-active ui-corner-top">
+					<span>Speaker Information</span>
+					<span class="ui-icon ui-icon-triangle-1-s act"/>
+				</div>
+				<div class="content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+
+					<div id="spValidationMsg" class="ui-corner-all" style="display:none;">
+						<p>
+							<span class="ui-icon"></span>
+						</p>
+					</div>
+					<table id="speakerInfo">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Color</th>
+								<th>Name</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<!--<button id="newSpAdd" accesskey="Ctrl+Alt+S"> </button>-->
+				</div>
+				<div class="title ui-accordion-header ui-helper-reset ui-state-active ui-corner-top">
+					<span> Video Information </span>
+					<span class="ui-icon ui-icon-triangle-1-s act"/>
+				</div>
+				<div class="content content ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="videoInfo">
+					<p><span class="label">Title</span><br /><%= @clip.url %></p>
+				</div>								
+											
+			</div>
+
+			<!-- end right content area -->
+		
+		</div>
+		<!-- end main container -->

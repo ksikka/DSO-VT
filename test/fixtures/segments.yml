@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  timestart: 1
+  timeend: 1
+  speaker: MyString
+  text: MyText
+
+two:
+  timestart: 1
+  timeend: 1
+  speaker: MyString
+  text: MyText

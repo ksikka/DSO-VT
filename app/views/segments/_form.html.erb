@@ -1,0 +1,33 @@
+<%= form_for(@segment) do |f| %>
+  <% if @segment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@segment.errors.count, "error") %> prohibited this segment from being saved:</h2>
+
+      <ul>
+      <% @segment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :timestart %><br />
+    <%= f.text_field :timestart %>
+  </div>
+  <div class="field">
+    <%= f.label :timeend %><br />
+    <%= f.text_field :timeend %>
+  </div>
+  <div class="field">
+    <%= f.label :speaker %><br />
+    <%= f.text_field :speaker %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br />
+    <%= f.text_area :text %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

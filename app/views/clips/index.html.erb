@@ -1,0 +1,24 @@
+<div class="span13">
+<h1>Listing of Queued Videos</h1>
+<table>
+<tr>
+<th>File name/URL</th>
+<th>Local File?</th>
+<th>Status</th>
+<th></th>
+<th></th>
+</tr>
+
+<% @clips.each do |clip| %>
+<tr>
+<td><%= link_to clip.url, :id => clip.id, :controller => "clips", :action => "read" %></td>
+<td><%= clip.localFile %></td>
+<td><%= "Pending" if !clip.status %>
+    <%= "Done!"   if clip.status %></td>
+<td> <%= link_to "Reset", :id => clip.id, :controller => "clips", :action => "reset" %> </td>
+<td> <%= button_to "Delete", clip, :confirm => "Are you sure? This will also delete the file permanently.", :method => "delete" %> </td>
+</tr>
+<% end %>
+</table>
+<p> <%= link_to "Add a file", new_clip_path %> to start a new transcription project.</p>
+</div>
