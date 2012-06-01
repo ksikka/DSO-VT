@@ -1,4 +1,4 @@
-$('document').ready(){function(){
+$('document').ready(function(){
 /**************************** Transcription related code *******************************/
     
   var review = false; /* Indicates the current mode of interaction*/
