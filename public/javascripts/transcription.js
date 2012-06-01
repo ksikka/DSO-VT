@@ -1,4 +1,5 @@
-    /**************************** Transcription related code *******************************/
+$('document').ready(){function(){
+/**************************** Transcription related code *******************************/
     
   var review = false; /* Indicates the current mode of interaction*/
   var spCharFlag = false;
@@ -489,11 +490,9 @@
       $(this).children('.ui-icon').addClass('inact ui-icon-triangle-1-e').removeClass('act ui-icon-triangle-1-s');
     }
   });
- 
-//  HIDE THE DIVS ON PAGE LOAD
+  //  HIDE THE DIVS ON PAGE LOAD
   $('div.content').hide();
   $('div.content').eq(0).show();
   $('div.content').eq(1).show();
-  
 
 });
