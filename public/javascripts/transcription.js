@@ -1,4 +1,90 @@
-$('document').ready(function(){
+var startTime = new Date();
+var endTime;
+var timeDiff;
+
+/******************************* JSON-related globals ******************/
+
+var seg_array = new Array();
+var clip_id;      // integer that corresponds to the clip_id in the model
+var update;        //function to build the seg_array
+var sendTranscript; // function to send the JSON
+/******************************* JQuery Ready Begins ******************/
+$(document).ready(function(){
+
+/******************************* JSON code ******************/
+update = function() {
+    /* Get the clip_id from a hidden div */
+    clip_id = $('#clipid').text();
+    /* Set the selectors */
+    var numSegments = $("table .start").length;
+    var timeStartSelector = "table .start";
+    var timeEndSelector = "table .end";
+    var textSelector = "table .seg_right textarea";
+    var speakerSelector = ".speaker";
+    /* Compile the Array from the selectors */
+    seg_array = new Array();
+    for(var i = 0; i < numSegments; i++) 
+    {
+      /* adjustment is because the last time-stamp is always NaN */
+      timeEnd = parseFormattedTime($(timeEndSelector).eq(i).text());
+      if(i == numSegments-1) timeEnd = Math.floor($f().getClip().fullDuration);
+      
+      seg_array.push({ 'timestart': parseFormattedTime($(timeStartSelector).eq(i).text()),
+                         'timeend': timeEnd,
+                         'speaker': $(speakerSelector).eq(i).text(), 
+                            'text': $(textSelector).eq(i).val()  });
+    }
+    /* Build a hash of s1 - s_name associations */
+    var sHash = { };
+    var numSpeakers = $("#speakerInfo tbody tr").length;
+    var keySelector = "#speakerInfo tbody tr td:first-child";
+    var valSelector = "#speakerInfo tbody tr td:nth-child(3)";
+    for(var i = 0; i < numSpeakers; i++)
+    {
+      sHash[$(keySelector).eq(i).text()] = $(valSelector).eq(i).text();
+    }
+    /* Go through the array and change 's1' to their real names */
+    for(var i = 0; i < seg_array.length; i++)
+    {
+      seg_array[i].speaker = sHash[seg_array[i].speaker];
+    }
+    /* Calculate the time a worker took in total */
+    endTime = new Date();
+    timeDiff = endTime - startTime;
+    timeDiff /= 1000; //dont care about milliseconds
+  }
+sendTranscript = function() {
+    var stringy = JSON.stringify({'clip_id':clip_id , 'segs':seg_array, 'time_elapsed':timeDiff  });
+    jQuery.post("/clips/"+clip_id+"/update", "JSON="+stringy ,function(data){
+    //analyzes the data that the server sends back.
+      if(data == "OK")
+        window.location = "/success/"+clip_id;
+      else if (data == "NO")
+        alert("There was an error for clip "+clip_id+". Please check the logs");
+     else
+        alert("This should never have happened. The server returned something other than \"OK\" or \"NO\"");
+     });
+}
+$('#export').click(function(){
+    update();
+    sendTranscript(); //normally, this will cause the page to redirect
+});
+
+    /**************************** Player initialization code *******************************/
+/*** Make sure flowplayer is installed in the same folder ***/
+  flowplayer("player", "/javascripts/flowplayer-3.2.7.swf",  {
+    clip: {
+
+       //these two configuration variables do the trick
+      autoPlay: false, 
+      autoBuffering: true  //<- do not place a comma here       
+    },
+    onError : function(errCode, errMsg){
+      alert(errMsg);
+    }
+  }); 
+
+
 /**************************** Transcription related code *******************************/
     
   var review = false; /* Indicates the current mode of interaction*/
