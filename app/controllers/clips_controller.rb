@@ -23,8 +23,9 @@ class ClipsController < ApplicationController
   def show
     @clip = Clip.get_random_unfinished
     if @clip.nil?
-      redirect_to :action => 'home', :flash => { :error => "No videos to transcribe. To add some, click Admin." }
-    else 
+      flash[:error] = "No videos to transcribe. To add some, click Admin."
+      redirect_to :action => 'home'
+    else
       #@youtubeURL = Youtube.grab_single_url_filename(@clip.url)[:url] unless @clip.localFile THIS IS HOW TO GET THE YOUTUBE DOWNLOAD LINK
       render :show, :layout => 'transcribe'
     end
