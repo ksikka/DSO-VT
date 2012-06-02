@@ -59,8 +59,10 @@ end
 
     respond_to do |format|
     if @clip.save
-      format.html  { redirect_to( :action => "index",
-                    :notice => 'Clip was successfully created.') }
+      format.html  {
+        flash[:notice] = 'Clip was successfully created.'
+        redirect_to( :action => "index" )
+      }
       format.json  { render :json => @clip,
                     :status => :created, :location => @clip }
     else
