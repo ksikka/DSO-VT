@@ -352,6 +352,8 @@ $('#export').click(function(){
 	      cuepointArray[index]={"time":parseInt(c.substring(0,c.indexOf(':')),10)*60 +parseInt(c.substring(c.indexOf(':')+1,c.length),10)*1000, "segment":index,};
 	      
 	    });
+
+		cuepointArray.sort(sortCuePoint);
 	                  
 	    for(var i = 0; i<cuepointArray.length; i++)
 	    {
@@ -544,6 +546,13 @@ $('#export').click(function(){
       $('#speakerInfo tbody').append('<tr><td class="spnum" contenteditable="false">'+s.name+'</td><td contenteditable="false"><p class="speaker" style="background-color:'+s.color+'"></p></td><td contenteditable="false" class="spname">'+s.origname+'</td></tr>');
     });
   }
+  
+  function sortCuePoint(a,b){
+  		var a1= a.time, b1= b.time;
+  		if(a1== b1) return 0;
+  		return a1> b1? 1: -1;	  
+  }
+  
   
   /*Function to convert the time returned from the video into a proper format. Video.currentTime returns the number of seconds */
   function formatTime(seconds) {
